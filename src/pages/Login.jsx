@@ -9,23 +9,35 @@ const[password, setPassword]= useState(" ");
 
 const addStorage= () =>{
 
-    localStorage.setItem ("userName",userName);
-    localStorage.setItem ("passWord",password);
-    setUsername(" ");
-    setPassword(" ");
+const savedUser=localStorage.getItem("userName")
+const savedPassword=localStorage.getItem("passWord")
+
+if (userName ===savedUser && password ===savedPassword){
+    alert("Login succesfull!");
+}else { alert("Wrong username or password")
+}
+setUsername(" ")
+setPassword(" ")
 };
 
 return(
-    <div>
-        <h1>Login</h1>
+<div>
+<input 
+type="text" 
+value={userName}
+onChange={(e)=>
+    setUsername(e.target.value)}
+    />
+<input type="password" 
+value={password}
+    onChange={(e)=>
+        setPassword(e.target.value)}
+        />
 
-        <input type="text" value= {userName} onChange={(e)=>setUsername(e.target.value)}
-        />
-        <input type="text" value= {password} onChange={(e)=>setPassword(e.target.value)}
-        />
-        <button onClick={addStorage}
-        >Save</button>
+    <button onClick={addStorage}
+    >Login</button>
     </div>
+    
 );
 }
 export default LocalStorage;
